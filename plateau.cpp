@@ -48,7 +48,7 @@ Plateau::Plateau()
         {1, 0, 0, 0, 3, 0, 5, 9, 2}
     };
     int ct [9][9] = {
-        {0, 0, 0, 1, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0},
         {0, 0, 0, 0, 0, 0, 0, 0, 0},
         {0, 0, 0, 0, 0, 0, 0, 0, 0},
         {0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -64,6 +64,7 @@ Plateau::Plateau()
             m_completionplateau[l][c].setValeur(ct[l][c]);
         }
     }
+    setSelectCase({0,0});
 }
 
 int Plateau::getDefaultValeur(int l, int c)
