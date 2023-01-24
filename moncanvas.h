@@ -17,6 +17,7 @@ public:
     void setPlateau(Plateau *newPlateau);
     void paintEvent(QPaintEvent *);
     void mousePressEvent(QMouseEvent *event);
+    void keyPressEvent(QKeyEvent *event);
 signals:
 
 };
