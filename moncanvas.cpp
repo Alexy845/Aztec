@@ -26,7 +26,16 @@ void MonCanvas::paintEvent(QPaintEvent *)
     if(m_plateau != nullptr) {
         QPainter painter(this);
         painter.drawImage(0, 0, *fond);
-        QFont *police = new QFont("Arial", 40, QFont::Bold);
+
+        painter.setPen(Qt::blue);
+        QColor blue20 = Qt::blue;
+        blue20.setAlphaF( 0.2 );
+        painter.setBrush(blue20);
+        int y = m_plateau->getSelectCase()[0]*55+1;
+        int x = m_plateau->getSelectCase()[1]*55+1;
+        painter.drawRect(QRect(x,y,55,55));
+
+        QFont *police = new QFont("Arial", 20, QFont::Bold);
         painter.setFont(*police);
         for(int l=0;l<9; l++) {
             for(int c=0;c<9;c++) {
@@ -52,11 +61,14 @@ void MonCanvas::paintEvent(QPaintEvent *)
 
 void MonCanvas::mousePressEvent(QMouseEvent *event)
 {
-    int c = (event->position().x()-22)/90;
-    int l = (event->position().y()-10)/90;
+    qDebug() << event->position().x();
+    qDebug() << event->position().y();
+    int c = (event->position().x()-10)/55;
+    int l = (event->position().y()-10)/55;
     qDebug() <<"Ligne "<<l<<", colonne "<<c<<", forme "<<m_plateau->quelleForme(l, c);
     m_plateau->setSelectCase({l,c});
     qDebug() << m_plateau->getSelectCase();
+    repaint();
 }
 
 void MonCanvas::keyPressEvent(QKeyEvent *event)
@@ -95,6 +107,10 @@ void MonCanvas::keyPressEvent(QKeyEvent *event)
     }
     else if (event->key() == Qt::Key_9){
         m_plateau->setValue(m_plateau->getSelectCase()[0], m_plateau->getSelectCase()[1], 9);
+        repaint();
+    }
+    else{
+        m_plateau->setValue(m_plateau->getSelectCase()[0], m_plateau->getSelectCase()[1], 0);
         repaint();
     }
 }

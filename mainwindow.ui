@@ -19,8 +19,8 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>871</width>
-      <height>871</height>
+      <width>500</width>
+      <height>500</height>
      </rect>
     </property>
     <widget class="QLCDNumber" name="Digital_clock">
