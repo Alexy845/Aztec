@@ -19,6 +19,7 @@ public:
     const QList<int> &getSelectCase() const;
     void setSelectCase(const QList<int> &newSelectCase);
     void setValue(int l, int c, int value);
+    bool canPlaceValue(int l, int c, int value);
 };
 
 #endif // PLATEAU_H

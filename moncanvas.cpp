@@ -45,8 +45,8 @@ void MonCanvas::paintEvent(QPaintEvent *)
                     painter.setPen(Qt::black);
                     painter.drawText(changeCoo(QPointF(c, l)), QString::number(v));
                 } else if (nv != 0){
-                    painter.setPen(Qt::gray);
-                    painter.drawText(changeCoo(QPointF(c, l)), QString::number(nv));
+                    painter.setPen(nv >= 10 ? Qt::red:Qt::gray);
+                    painter.drawText(changeCoo(QPointF(c, l)), QString::number(nv >= 10 ? nv/10:nv));
                 }
             }
         }

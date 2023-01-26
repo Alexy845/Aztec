@@ -30,7 +30,38 @@ void Plateau::setSelectCase(const QList<int> &newSelectCase)
 
 void Plateau::setValue(int l, int c, int value)
 {
-    m_completionplateau[l][c].setValeur(value);
+    m_completionplateau[l][c].setValeur(canPlaceValue(l,c,value) ? value:value*10);
+}
+
+bool Plateau::canPlaceValue(int l, int c, int value)
+{
+    // Check ligne colonne
+    for(int i=0; i<9;i++) {
+        if(getValeur(l,i) >= 10 ? getValeur(l,i)/10:getValeur(l,i) == value || getDefaultValeur(l,i) >= 10 ? getDefaultValeur(l,i)/10:getDefaultValeur(l,i) == value){
+            return false;
+        }
+        if(getValeur(i,c) >= 10 ? getValeur(i,c)/10:getValeur(i,c) == value || getDefaultValeur(i,c)  >= 10 ? getDefaultValeur(i,c)/10:getDefaultValeur(i,c) == value){
+            return false;
+        }
+    }
+
+    // Check in forme
+    int ncasecheck = 0;
+
+    for(int i =0; i<9; i++){
+        for(int j=0; j<9; j++){
+            if (quelleForme(i,j) == quelleForme(l,c)){
+                ncasecheck++;
+                if(getValeur(i,j) >= 10 ? getValeur(i,j)/10:getValeur(i,j) == value || getDefaultValeur(i,j) >= 10 ? getDefaultValeur(i,j)/10:getDefaultValeur(i,j) == value){
+                    return false;
+                }
+                if(ncasecheck == 9){
+                    return true;
+                }
+            }
+        }
+    }
+    return true;
 }
 
 Plateau::Plateau()
