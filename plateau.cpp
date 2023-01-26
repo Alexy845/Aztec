@@ -1,6 +1,8 @@
 #include "plateau.h"
 #include "piece.h"
 
+#include <QDebug>
+
 int Plateau::forme[9][9] = {
     {0, 0, 1, 1, 1, 1, 1, 2, 2},
     {0, 0, 0, 1, 1, 1, 2, 2, 2},
@@ -31,16 +33,22 @@ void Plateau::setSelectCase(const QList<int> &newSelectCase)
 void Plateau::setValue(int l, int c, int value)
 {
     m_completionplateau[l][c].setValeur(canPlaceValue(l,c,value) ? value:value*10);
+    checkVictoryDefeat();
 }
 
 bool Plateau::canPlaceValue(int l, int c, int value)
 {
+    if (value == 0){
+        return true;
+    }
     // Check ligne colonne
     for(int i=0; i<9;i++) {
-        if(getValeur(l,i) >= 10 ? getValeur(l,i)/10:getValeur(l,i) == value || getDefaultValeur(l,i) >= 10 ? getDefaultValeur(l,i)/10:getDefaultValeur(l,i) == value){
+        if((getValeur(l,i) >= 10 ? getValeur(l,i)/10:getValeur(l,i)) == value || (getDefaultValeur(l,i) >= 10 ? getDefaultValeur(l,i)/10:getDefaultValeur(l,i)) == value){
+            uncreaseRemaining_live();
             return false;
         }
-        if(getValeur(i,c) >= 10 ? getValeur(i,c)/10:getValeur(i,c) == value || getDefaultValeur(i,c)  >= 10 ? getDefaultValeur(i,c)/10:getDefaultValeur(i,c) == value){
+        if((getValeur(i,c) >= 10 ? getValeur(i,c)/10:getValeur(i,c)) == value || (getDefaultValeur(i,c)  >= 10 ? getDefaultValeur(i,c)/10:getDefaultValeur(i,c)) == value){
+            uncreaseRemaining_live();
             return false;
         }
     }
@@ -52,7 +60,8 @@ bool Plateau::canPlaceValue(int l, int c, int value)
         for(int j=0; j<9; j++){
             if (quelleForme(i,j) == quelleForme(l,c)){
                 ncasecheck++;
-                if(getValeur(i,j) >= 10 ? getValeur(i,j)/10:getValeur(i,j) == value || getDefaultValeur(i,j) >= 10 ? getDefaultValeur(i,j)/10:getDefaultValeur(i,j) == value){
+                if((getValeur(i,j) >= 10 ? getValeur(i,j)/10:getValeur(i,j)) == value || (getDefaultValeur(i,j) >= 10 ? getDefaultValeur(i,j)/10:getDefaultValeur(i,j)) == value){
+                    uncreaseRemaining_live();
                     return false;
                 }
                 if(ncasecheck == 9){
@@ -64,8 +73,29 @@ bool Plateau::canPlaceValue(int l, int c, int value)
     return true;
 }
 
+int Plateau::getRemaining_live() const
+{
+    return m_remaining_live;
+}
+
+void Plateau::uncreaseRemaining_live()
+{
+    m_remaining_live--;
+}
+
+void Plateau::checkVictoryDefeat()
+{
+    if(getRemaining_live() > 0){
+        qDebug() << getRemaining_live();
+    }
+    else{
+        qDebug() << "You Lose !";
+    }
+}
+
 Plateau::Plateau()
 {
+    m_remaining_live = 3;
     //m_plateau[0][0]
     int t[9][9] = {
         {5, 9, 8, 0, 7, 0, 0, 0 ,6},
