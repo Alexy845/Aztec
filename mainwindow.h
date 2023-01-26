@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QTimer>
+#include <QDateTime>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -15,7 +17,10 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    void action_timer();
+
 private:
     Ui::MainWindow *ui;
+    QTimer *timer;
 };
 #endif // MAINWINDOW_H
