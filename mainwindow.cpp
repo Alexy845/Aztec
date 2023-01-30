@@ -25,6 +25,6 @@ void MainWindow::action_timer()
     compteur++;
     int min = compteur/60;
     int sec = compteur%60;
-    QString te = QString::number(min) + (min >= 10 ? "":"0") + ":" + (sec >= 10 ? "":"0") + QString::number(sec);
+    QString te = (min >= 10 ? "":"0") + QString::number(min) + ":" + (sec >= 10 ? "":"0") + QString::number(sec);
     ui->Digital_clock->display(te);
 }

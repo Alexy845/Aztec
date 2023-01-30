@@ -91,6 +91,19 @@ void Plateau::checkVictoryDefeat()
     else{
         qDebug() << "You Lose !";
     }
+
+    for(int l=0; l<9; l++) {
+        for(int c=0; c<9; c++) {
+            m_plateau[l][c].getValeur();
+            m_completionplateau[l][c].getValeur();
+            if(m_plateau[l][c].getValeur() == m_completionplateau[l][c].getValeur() && m_plateau[l][c].getValeur()< 10 && m_plateau[l][c].getValeur() != 0) {
+                qDebug() << "You Win !";
+            }
+            else {
+                qDebug() << "none";
+            }
+        }
+    }
 }
 
 Plateau::Plateau()
