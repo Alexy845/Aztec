@@ -131,7 +131,7 @@ void Plateau::checkVictoryDefeat()
         for(int c=0; c<9; c++) {
             int t = m_plateau[l][c].getValeur();
             int ct = m_completionplateau[l][c].getValeur();
-            if(t != ct || t >= 10 || t == 0) {
+            if(ct >= 10 || t == 0) {
                 win = false;
                 break;
             }

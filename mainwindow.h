@@ -18,6 +18,7 @@ public:
     ~MainWindow();
 
     void action_timer();
+    void stopTimer();
 
 private:
     Ui::MainWindow *ui;
