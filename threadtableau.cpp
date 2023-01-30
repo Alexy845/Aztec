@@ -58,7 +58,7 @@ bool ThreadTableau::canPlaceGenValue(int l, int c, int value, QList<QList<int> >
 const QList<QList<int> > ThreadTableau::genTableau()
 {
     QList<QList<int>> nTable = {
-        {0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {4, 7, 2, 1, 6, 8, 3, 5, 9},
         {0, 0, 0, 0, 0, 0, 0, 0, 0},
         {0, 0, 0, 0, 0, 0, 0, 0, 0},
         {0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -69,7 +69,7 @@ const QList<QList<int> > ThreadTableau::genTableau()
         {0, 0, 0, 0, 0, 0, 0, 0, 0}
     };
 
-    int current_l = 0;
+    int current_l = 1;
     int current_c = 0;
     int pass_l = 0;
     int pass_c = 0;
@@ -130,18 +130,21 @@ const QList<QList<int> > ThreadTableau::genAztec(QList<QList<int> > plateau)
     for(int l=0; l<9; l++){
         for(int c=0; c<9; c++){
             Aztec[l][c] = 0;
+            //qDebug() << Aztec[0] << "\n" << Aztec[1] << "\n" << Aztec[2] << "\n" << Aztec[3] << "\n" << Aztec[4] << "\n" << Aztec[5] << "\n" << Aztec[6] << "\n" << Aztec[7] << "\n" << Aztec[8] << "\n";
             for(int value = 1; value<10; value++){
                 if(value != plateau[l][c]){
                     if(canResolveAztecWith(Aztec, value, l, c)){
                         Aztec[l][c] = plateau[l][c];
+                        //qDebug() << l << c << value;
                         value = 10;
+                    }else {
                     }
                 }
             }
         }
     }
 
-     qDebug() << Aztec[0] << "\n" << Aztec[1] << "\n" << Aztec[2] << "\n" << Aztec[3] << "\n" << Aztec[4] << "\n" << Aztec[5] << "\n" << Aztec[6] << "\n" << Aztec[7] << "\n" << Aztec[8] << "\n";
+    qDebug() << Aztec[0] << "\n" << Aztec[1] << "\n" << Aztec[2] << "\n" << Aztec[3] << "\n" << Aztec[4] << "\n" << Aztec[5] << "\n" << Aztec[6] << "\n" << Aztec[7] << "\n" << Aztec[8] << "\n";
     return Aztec;
 }
 
@@ -159,9 +162,13 @@ bool ThreadTableau::canResolveAztecWith(QList<QList<int> > plateau, int value, i
         {0, 0, 0, 0, 0, 0, 0, 0, 0},
         {0, 0, 0, 0, 0, 0, 0, 0, 0}
     };
+    if(!canPlaceGenValue(ol,oc,value,plateau)) {
+        return false;
+    }
     resAztec[ol][oc] = value;
     for(int l=0; l<9; l++){
         for(int c=0; c<9; c++){
+            //qDebug() << l << c;
             if(plateau[l][c] != 0){
                 resAztec[l][c] = plateau[l][c];
             }else {
@@ -196,5 +203,15 @@ bool ThreadTableau::canResolveAztecWith(QList<QList<int> > plateau, int value, i
 
 void ThreadTableau::run()
 {
+    QList<QList<int>> t ={{1, 2, 3, 4, 5, 6, 7, 8, 9},
+     {3, 4, 5, 1, 8, 9, 2, 6, 7},
+     {4, 6, 7, 9, 2, 1, 3, 5, 8},
+     {2, 1, 8, 5, 7, 3, 4, 9, 6},
+     {7, 3, 6, 2, 9, 8, 5, 1, 4},
+     {5, 8, 2, 6, 1, 4, 9, 7, 3},
+     {9, 5, 1, 3, 6, 7, 8, 4, 2},
+     {8, 9, 4, 7, 3, 5, 6, 2, 1},
+     {6, 7, 9, 8, 4, 2, 1, 3, 5},};
     genAztec(genTableau());
+    qDebug() << "finis";
 }
