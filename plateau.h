@@ -14,7 +14,6 @@ private:
     QList<int> m_selectCase;
 public:
     Plateau();
-    const QList<QList<int>> genTableau();
     int getDefaultValeur(int l, int c);
     int getValeur(int l, int c);
     int quelleForme(int l, int c);
@@ -22,7 +21,6 @@ public:
     void setSelectCase(const QList<int> &newSelectCase);
     void setValue(int l, int c, int value);
     bool canPlaceValue(int l, int c, int value);
-    bool canPlaceGenValue(int l, int c, int value, QList<QList<int>> plateau);
     int getRemaining_live() const;
     void uncreaseRemaining_live();
     void checkVictoryDefeat();
