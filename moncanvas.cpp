@@ -61,13 +61,9 @@ void MonCanvas::paintEvent(QPaintEvent *)
 
 void MonCanvas::mousePressEvent(QMouseEvent *event)
 {
-    qDebug() << event->position().x();
-    qDebug() << event->position().y();
     int c = (event->position().x()-10)/55;
     int l = (event->position().y()-10)/55;
-    qDebug() <<"Ligne "<<l<<", colonne "<<c<<", forme "<<m_plateau->quelleForme(l, c);
     m_plateau->setSelectCase({l,c});
-    qDebug() << m_plateau->getSelectCase();
     repaint();
 }
 

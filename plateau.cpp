@@ -73,6 +73,40 @@ bool Plateau::canPlaceValue(int l, int c, int value)
     return true;
 }
 
+bool Plateau::canPlaceGenValue(int l, int c, int value, QList<QList<int>> plateau)
+{
+    if (value == 0){
+        return true;
+    }
+    // Check ligne colonne
+    for(int i=0; i<9;i++) {
+        if(plateau[l][i] == value){
+            return false;
+        }
+        if(plateau[i][c] == value){
+            return false;
+        }
+    }
+
+    // Check in forme
+    int ncasecheck = 0;
+
+    for(int i =0; i<9; i++){
+        for(int j=0; j<9; j++){
+            if (quelleForme(i,j) == quelleForme(l,c)){
+                ncasecheck++;
+                if(plateau[i][j] == value){
+                    return false;
+                }
+                if(ncasecheck == 9){
+                    return true;
+                }
+            }
+        }
+    }
+    return true;
+}
+
 int Plateau::getRemaining_live() const
 {
     return m_remaining_live;
@@ -139,6 +173,46 @@ Plateau::Plateau()
         }
     }
     setSelectCase({0,0});
+    //genTableau();
+}
+
+const QList<QList<int>> Plateau::genTableau()
+{
+    QList<QList<int>> nTable = {
+        {0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0}
+    };
+
+    for(int l=0;l<9;l++){
+        for(int c=0;c<9;c++){
+            int value = nTable[l][c]+1;
+            value = value == 0 ? 1:value;
+            while(!(canPlaceGenValue(l,c,value,nTable))){
+                value++;
+                if(value == 10){
+                    value = 0;
+                    if (c == 0){
+                        l--;
+                        c = 8;
+                    }else {
+                        c--;
+                    }
+                }
+            }
+            nTable[l][c] = value;
+            qDebug() << nTable[0] << "\n" << nTable[1] << "\n" << nTable[2] << "\n" << nTable[3] << "\n" << nTable[4] << "\n" << nTable[5] << "\n" << nTable[6] << "\n" << nTable[7] << "\n" << nTable[8] << "\n" << "\n New Step";qDebug() << nTable[0] << "\n" << nTable[1] << "\n" << nTable[2] << "\n" << nTable[3] << "\n" << nTable[4] << "\n" << nTable[5] << "\n" << nTable[6] << "\n" << nTable[7] << "\n" << nTable[8] << "\n" << "\n New Step";
+        }
+    }
+
+    qDebug() << nTable[0] << "\n" << nTable[1] << "\n" << nTable[2] << "\n" << nTable[3] << "\n" << nTable[4] << "\n" << nTable[5] << "\n" << nTable[6] << "\n" << nTable[7] << "\n" << nTable[8] << "\n";
+    return nTable;
 }
 
 int Plateau::getDefaultValeur(int l, int c)
