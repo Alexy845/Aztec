@@ -15,14 +15,16 @@ SOURCES += \
     mainwindow.cpp \
     moncanvas.cpp \
     piece.cpp \
-    plateau.cpp
+    plateau.cpp \
+    threadtableau.cpp
 
 HEADERS += \
     ../shared/qstd.h \
     mainwindow.h \
     moncanvas.h \
     piece.h \
-    plateau.h
+    plateau.h \
+    threadtableau.h
 
 FORMS += \
     mainwindow.ui

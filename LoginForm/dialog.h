@@ -5,7 +5,7 @@
 #include <QDebug>
 #include <QtSql>
 #include <QFileInfo>
-
+#include <QMessageBox>
 
 
 QT_BEGIN_NAMESPACE
@@ -24,6 +24,8 @@ private slots:
     void on_btnClear_clicked();
 
     void on_btnClear_3_clicked();
+
+    void on_btnLogin_clicked();
 
 private:
     Ui::Dialog *ui;

@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "threadtableau.h"
 
 #include <QApplication>
 
@@ -28,5 +29,7 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     MainWindow w;
     w.show();
+    ThreadTableau genTableau = new ThreadTableau();
+    genTableau.start();
     return a.exec();
 }
