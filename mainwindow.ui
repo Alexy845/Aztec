@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>895</width>
-    <height>931</height>
+    <width>1080</width>
+    <height>720</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -34,25 +34,134 @@
    </size>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="MonCanvas" name="canvas" native="true">
+   <widget class="QStackedWidget" name="stackedWidget">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>500</width>
-      <height>500</height>
+      <x>0</x>
+      <y>0</y>
+      <width>1080</width>
+      <height>720</height>
      </rect>
     </property>
-   </widget>
-   <widget class="QLCDNumber" name="Digital_clock">
-    <property name="geometry">
-     <rect>
-      <x>790</x>
-      <y>10</y>
-      <width>91</width>
-      <height>41</height>
-     </rect>
+    <property name="currentIndex">
+     <number>1</number>
     </property>
+    <widget class="QWidget" name="page_accueil">
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>131</width>
+        <height>81</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:12pt; color:#787878;&quot;&gt;Accueil&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_2">
+      <property name="geometry">
+       <rect>
+        <x>470</x>
+        <y>350</y>
+        <width>171</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(74,57,88, 0.407);
+border-color:rgba(196, 196, 196, 0.4);
+color: rgba(240, 240, 240, 0.850);
+border-radius: 6px;
+font: 13pt &quot;Segoe UI&quot;;</string>
+      </property>
+      <property name="text">
+       <string>Play</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="page_jeu">
+     <widget class="MonCanvas" name="canvas" native="true">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>1081</width>
+        <height>721</height>
+       </rect>
+      </property>
+      <widget class="QPushButton" name="pushButton">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>40</y>
+         <width>83</width>
+         <height>29</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(74,57,88, 0.440);
+border-color:rgba(74,57,88, 0.4);
+color: rgba(250, 250, 250, 0.700);
+border-radius: 6px;</string>
+       </property>
+       <property name="text">
+        <string>Accueil</string>
+       </property>
+      </widget>
+      <widget class="QLCDNumber" name="Digital_clock">
+       <property name="geometry">
+        <rect>
+         <x>910</x>
+         <y>30</y>
+         <width>111</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgba(252, 252, 252, 0.220);
+gridline-color: rgba(196, 196, 196, 0.407);
+background-color: rgba(74,57,88, 0.250);
+border : 0px solid rgba(196, 196, 196, 0.407);
+border-radius: 8px;</string>
+       </property>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="page_victoire">
+     <widget class="QLabel" name="label_3">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>240</y>
+        <width>321</width>
+        <height>151</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:20pt; color:#0b7a3d;&quot;&gt;You Win !&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="page_defaite">
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>210</y>
+        <width>361</width>
+        <height>241</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:20pt; color:#5b5b5b;&quot;&gt;You Lose !&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+    </widget>
    </widget>
   </widget>
  </widget>

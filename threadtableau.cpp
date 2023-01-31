@@ -1,6 +1,9 @@
 #include "threadtableau.h"
 
 #include <QDebug>
+#include <QGlobal.h>
+#include <QTime>
+#include "threadgeneratorresolve.h".h"
 
 ThreadTableau::ThreadTableau(QObject *parent) : QThread(parent) {}
 
@@ -55,10 +58,10 @@ bool ThreadTableau::canPlaceGenValue(int l, int c, int value, QList<QList<int> >
     return true;
 }
 
-const QList<QList<int> > ThreadTableau::genTableau()
+/*const QList<QList<int> > ThreadTableau::genTableau()
 {
     QList<QList<int>> nTable = {
-        {4, 7, 2, 1, 6, 8, 3, 5, 9},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0},
         {0, 0, 0, 0, 0, 0, 0, 0, 0},
         {0, 0, 0, 0, 0, 0, 0, 0, 0},
         {0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -69,21 +72,50 @@ const QList<QList<int> > ThreadTableau::genTableau()
         {0, 0, 0, 0, 0, 0, 0, 0, 0}
     };
 
-    int current_l = 1;
+    while(true){
+        nTable = {
+                {0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0}
+            };
+        for(int l = 0; l<9; l++){
+            for(int c = 0; c<9; c++){
+                int value = rand() % ((9 + 1) - 1) + 1;
+                if(canPlaceGenValue(l, c, value, nTable)){
+                    nTable[l][c] = value;
+                    //qDebug() << nTable[0] << "\n" << nTable[1] << "\n" << nTable[2] << "\n" << nTable[3] << "\n" << nTable[4] << "\n" << nTable[5] << "\n" << nTable[6] << "\n" << nTable[7] << "\n" << nTable[8] << "\n";
+                }else {
+                    //qDebug() << value;
+                    l = 10;
+                    c = 10;
+                }
+            }
+        }
+    }*/
+    /*int current_l = 0;
     int current_c = 0;
     int pass_l = 0;
     int pass_c = 0;
 
     //srand(time(0));
     while (true) {
-        int value = nTable[current_l][current_c]+1;
-        //QList<int> vl = {1,2,3,4,5,6,7,8,9};
+        //int value = nTable[current_l][current_c]+1;
+        QList<int> vl = {1,2,3,4,5,6,7,8,9};
+        vl.removeAll(nTable[current_l][current_c]);
+        int index = rand() % ((vl.size() + 0) - 0) + 0;
+        int value = vl[index];
+        vl.removeAll(value);
         while(!canPlaceGenValue(current_l, current_c, value, nTable)){
-            if(/*vl.size() != 0*/value != 9){
-                //int index = rand()%vl.size();
-                //value = vl[index];
-                //vl.removeAt(index);
-                value++;
+            if(vl.size() != 0/*value != 9*//*){
+                int index = rand() % ((vl.size() + 0) - 0) + 0;
+                value = vl[index];
+                vl.removeAll(value);
             }else {
                 value = 10;
             }
@@ -92,6 +124,7 @@ const QList<QList<int> > ThreadTableau::genTableau()
             nTable[current_l][current_c] = 0;
             if(current_c == 0){
                 current_l = pass_l;
+                qDebug() << nTable[current_l];
                 pass_l--;
             }
             current_c = pass_c;
@@ -107,6 +140,7 @@ const QList<QList<int> > ThreadTableau::genTableau()
                     break;
                 }
                 pass_l = current_l;
+                qDebug() << nTable[current_l];
                 current_l++;
                 pass_c = current_c;
                 current_c = 0;
@@ -114,14 +148,14 @@ const QList<QList<int> > ThreadTableau::genTableau()
                 pass_c = current_c;
                 current_c++;
             }
-        }
+        }*/
         //qDebug() << nTable[0] << "\n" << nTable[1] << "\n" << nTable[2] << "\n" << nTable[3] << "\n" << nTable[4] << "\n" << nTable[5] << "\n" << nTable[6] << "\n" << nTable[7] << "\n" << nTable[8] << "\n";
 
-    }
+    /*}*/
 
-    qDebug() << nTable[0] << "\n" << nTable[1] << "\n" << nTable[2] << "\n" << nTable[3] << "\n" << nTable[4] << "\n" << nTable[5] << "\n" << nTable[6] << "\n" << nTable[7] << "\n" << nTable[8] << "\n";
+    /*qDebug() << nTable[0] << "\n" << nTable[1] << "\n" << nTable[2] << "\n" << nTable[3] << "\n" << nTable[4] << "\n" << nTable[5] << "\n" << nTable[6] << "\n" << nTable[7] << "\n" << nTable[8] << "\n";
     return nTable;
-}
+}*/
 
 const QList<QList<int> > ThreadTableau::genAztec(QList<QList<int> > plateau)
 {
@@ -203,6 +237,13 @@ bool ThreadTableau::canResolveAztecWith(QList<QList<int> > plateau, int value, i
 
 void ThreadTableau::run()
 {
+
+    /*QTime time = QTime::currentTime();
+    srand((uint)time.msec());*/
+   /* for(int i = 0; i<100; i++){
+        qDebug() << rand() % ((9 + 1) - 1) + 1;
+    }*/
+
     QList<QList<int>> t ={{1, 2, 3, 4, 5, 6, 7, 8, 9},
      {3, 4, 5, 1, 8, 9, 2, 6, 7},
      {4, 6, 7, 9, 2, 1, 3, 5, 8},
@@ -212,6 +253,46 @@ void ThreadTableau::run()
      {9, 5, 1, 3, 6, 7, 8, 4, 2},
      {8, 9, 4, 7, 3, 5, 6, 2, 1},
      {6, 7, 9, 8, 4, 2, 1, 3, 5},};
-    genAztec(genTableau());
+    //genAztec(genTableau());
+/*
+    ThreadGeneratorResolve th = new ThreadGeneratorResolve;
+    th.start();
+    ThreadGeneratorResolve th2 = new ThreadGeneratorResolve;
+    th2.start();
+    ThreadGeneratorResolve th3 = new ThreadGeneratorResolve;
+    th3.start();
+    ThreadGeneratorResolve th4 = new ThreadGeneratorResolve;
+    th4.start();
+
+    ThreadGeneratorResolve th5 = new ThreadGeneratorResolve;
+    th5.start();
+    ThreadGeneratorResolve th6 = new ThreadGeneratorResolve;
+    th6.start();
+    ThreadGeneratorResolve th7 = new ThreadGeneratorResolve;
+    th7.start();
+    ThreadGeneratorResolve th8 = new ThreadGeneratorResolve;
+    th8.start();
+
+
+    ThreadGeneratorResolve th9 = new ThreadGeneratorResolve;
+    th9.start();
+    ThreadGeneratorResolve th10 = new ThreadGeneratorResolve;
+    th10.start();
+    ThreadGeneratorResolve th11 = new ThreadGeneratorResolve;
+    th11.start();
+    ThreadGeneratorResolve th12 = new ThreadGeneratorResolve;
+    th12.start();
+
+    ThreadGeneratorResolve th13 = new ThreadGeneratorResolve;
+    th13.start();
+    ThreadGeneratorResolve th14 = new ThreadGeneratorResolve;
+    th14.start();
+    ThreadGeneratorResolve th15 = new ThreadGeneratorResolve;
+    th15.start();
+    ThreadGeneratorResolve th16 = new ThreadGeneratorResolve;
+    th16.start();
+    while(true){
+    }
+*/
     qDebug() << "finis";
 }

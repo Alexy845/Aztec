@@ -29,3 +29,18 @@ void MainWindow::action_timer()
     QString te = (min >= 10 ? "":"0") + QString::number(min) + ":" + (sec >= 10 ? "":"0") + QString::number(sec);
     ui->Digital_clock->display(te);
 }
+
+void MainWindow::on_pushButton_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(1);
+}
+
+
+
+
