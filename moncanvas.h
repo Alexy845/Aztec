@@ -11,7 +11,7 @@ private:
     QImage *fond;
     Plateau *m_plateau=nullptr;
     QPointF changeCoo(QPointF p);
-    int margex = 20, margeY = 40, deltaX = 55, deltaY = 55;
+    int margex = 312, margeY = 110, deltaX = 55, deltaY = 55;
 public:
     explicit MonCanvas(QWidget *parent = nullptr);
     void setPlateau(Plateau *newPlateau);

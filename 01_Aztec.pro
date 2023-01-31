@@ -16,6 +16,8 @@ SOURCES += \
     moncanvas.cpp \
     piece.cpp \
     plateau.cpp \
+    threadgeneratorresolve.cpp \
+    threadgenresolve.cpp \
     threadtableau.cpp
 
 HEADERS += \
@@ -24,6 +26,8 @@ HEADERS += \
     moncanvas.h \
     piece.h \
     plateau.h \
+    threadgeneratorresolve.h \
+    threadgenresolve.h \
     threadtableau.h
 
 FORMS += \

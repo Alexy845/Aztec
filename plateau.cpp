@@ -93,7 +93,21 @@ void Plateau::checkVictoryDefeat()
         qDebug() << "You Lose !";
     }
 
-    bool win = true;
+
+    for(int l=0; l<9;l++){
+        for(int c=0; c<9;c++){
+            if(m_plateau[l][c].getValeur() == 0){
+                if(m_completionplateau[l][c].getValeur() == 0 || m_completionplateau[l][c].getValeur() > 9){
+                    l=10;
+                    c=10;
+                }
+            }
+            if(l==8 && c==8 && getRemaining_live() != 0){
+                qDebug() << "You Win !";
+            }
+        }
+    }
+   /* bool win = true;
     for(int l=0; l<9; l++) {
         for(int c=0; c<9; c++) {
             int t = m_plateau[l][c].getValeur();
@@ -106,7 +120,7 @@ void Plateau::checkVictoryDefeat()
         }
         if (win) qDebug() << "You Win !";
     }
-
+    if (win) qDebug() << "You Win !";*/
 }
 
 Plateau::Plateau()
