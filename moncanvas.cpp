@@ -27,10 +27,11 @@ void MonCanvas::paintEvent(QPaintEvent *)
         QPainter painter(this);
         painter.drawImage(0, 0, *fond);
 
-        painter.setPen(Qt::blue);
-        QColor blue20 = Qt::blue;
-        blue20.setAlphaF( 0.2 );
-        painter.setBrush(blue20);
+
+        QColor violet = QColor(74,57,88);
+        painter.setPen(violet);
+        violet.setAlphaF( 0.2 );
+        painter.setBrush(violet);
         int y = m_plateau->getSelectCase()[0]*55+74;
         int x = m_plateau->getSelectCase()[1]*55+292;
         painter.drawRect(QRect(x,y,55,55));
@@ -42,10 +43,10 @@ void MonCanvas::paintEvent(QPaintEvent *)
                 int v = m_plateau->getDefaultValeur(l, c);
                 int nv = m_plateau->getValeur(l, c);
                 if(v!=0) {
-                    painter.setPen(Qt::black);
+                    painter.setPen(QColor(46,35,56));
                     painter.drawText(changeCoo(QPointF(c, l)), QString::number(v));
                 } else if (nv != 0){
-                    painter.setPen(nv >= 10 ? Qt::red:Qt::gray);
+                    painter.setPen(nv >= 10 ? Qt::red:QColor(178,163,153));
                     painter.drawText(changeCoo(QPointF(c, l)), QString::number(nv >= 10 ? nv/10:nv));
                 }
             }
@@ -63,7 +64,7 @@ void MonCanvas::mousePressEvent(QMouseEvent *event)
 {
     int c = (event->position().x()-292)/55;
     int l = (event->position().y()-74)/55;
-    qDebug() << event->position().x() << event->position().y();
+    //qDebug() << event->position().x() << event->position().y();
     m_plateau->setSelectCase({l,c});
     repaint();
 }
