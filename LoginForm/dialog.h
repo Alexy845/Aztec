@@ -27,6 +27,8 @@ private slots:
 
     void on_btnLogin_clicked();
 
+    void on_btnRegister_clicked();
+
 private:
     Ui::Dialog *ui;
 

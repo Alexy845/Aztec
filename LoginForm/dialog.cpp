@@ -2,7 +2,7 @@
 #include "ui_dialog.h"
 
 
-#define Path_to_DB "D:/Ynov B1/POO VILLEDON/LoginForm/SQLite/accounts.sq3"
+#define Path_to_DB "D:/Ynov B1/POO VILLEDON/LoginForm/SQLite/db.sqlite"
 
 Dialog::Dialog(QWidget *parent)
     : QDialog(parent)
@@ -19,10 +19,12 @@ Dialog::Dialog(QWidget *parent)
         if(myDB.open())
         {
             ui->lblResult->setText("[+]Connected to Database File :)");
+            ui->lblResult_2->setText("[+]Connected to Database File :)");
 
         }
     }else{
         ui->lblResult->setText("[!]Database File doesnot exist : (");
+        ui->lblResult_2->setText("[!]Database File doesnot exist : (");
 
     }
 }
@@ -54,6 +56,7 @@ void Dialog::on_btnClear_3_clicked()
 
 void Dialog::on_btnLogin_clicked()
 {
+    qDebug() << "ici";
     QString Username, Password;
     Username = ui->txtUser->text();
     Password = ui->txtPass->text();
@@ -64,9 +67,10 @@ void Dialog::on_btnLogin_clicked()
     }
 
     QSqlQuery qry;
-    if(qry.exec("SELECT Username, Password, Role FROM Users WHERE Username=\'" + Username +
-                "\' AND Password=\'" + Password + "\'"))
+    if(qry.exec("SELECT Username, Password, Role FROM Users WHERE Username='" + Username +
+                "' AND Password='" + Password + "'"))
     {
+        qDebug() <<"bonjour";
         if(qry.next())
         {
             ui->lblResult->setText("[+]Valid Username and Password");
@@ -82,4 +86,40 @@ void Dialog::on_btnLogin_clicked()
         }
     }
 }
+
+
+void Dialog::on_btnRegister_clicked()
+{
+    QString Username, Password,ConfirmPassword;
+    Username = ui->txtUserRegister->text();
+    Password = ui->txtPassRegister->text();
+    ConfirmPassword = ui->txtConfirmPass->text();
+
+    if(!myDB.isOpen()){
+            qDebug() << "No connection to db :( ";
+            return;
+    }
+
+    QSqlQuery qry;
+    if(qry.exec("SELECT Username, Password, ConfirmPassword, Role FROM Users WHERE Username=\'" + Username +
+                "\' AND Password=\'" + Password + "\'" + "\' AND ConfirmPassword=\'" + ConfirmPassword))
+    {
+        if(qry.next())
+        {
+            ui->lblResult_2->setText("[+]Valid Username and Password and ConfirmPassword");
+            QString msg = "Username = " + qry.value(0).toString() + " \n" +
+                          "Password = " + qry.value(1).toString() + " \n" +
+                          "ConfirmPassword = " + qry.value(2).toString() + " \n" +
+                          "Role = " + qry.value(3).toString();
+
+            QMessageBox::warning(this, "Register was successful", msg);
+        }else{
+            ui->lblResult_2->setText("[-]Wrong Password or ConfirmPassword. :( ");
+
+
+        }
+    }
+}
+
+
 
