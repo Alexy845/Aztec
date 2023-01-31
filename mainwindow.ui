@@ -44,7 +44,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="page_accueil">
      <widget class="QLabel" name="label">
@@ -88,49 +88,49 @@ font: 13pt &quot;Segoe UI&quot;;</string>
      <widget class="MonCanvas" name="canvas" native="true">
       <property name="geometry">
        <rect>
-        <x>40</x>
-        <y>90</y>
-        <width>500</width>
-        <height>500</height>
+        <x>0</x>
+        <y>0</y>
+        <width>1081</width>
+        <height>721</height>
        </rect>
       </property>
-     </widget>
-     <widget class="QLCDNumber" name="Digital_clock">
-      <property name="geometry">
-       <rect>
-        <x>430</x>
-        <y>20</y>
-        <width>111</width>
-        <height>51</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(0, 0, 0);
+      <widget class="QPushButton" name="pushButton">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>40</y>
+         <width>83</width>
+         <height>29</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(196, 196, 196, 0.407);
+border-color:rgba(196, 196, 196, 0.4);
+color: rgb(126, 126, 126);
+border-radius: 6px;</string>
+       </property>
+       <property name="text">
+        <string>Accueil</string>
+       </property>
+      </widget>
+      <widget class="QLCDNumber" name="Digital_clock">
+       <property name="geometry">
+        <rect>
+         <x>910</x>
+         <y>50</y>
+         <width>111</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(0, 0, 0);
 gridline-color: rgba(196, 196, 196, 0.407);
 font: 10pt &quot;Segoe UI&quot;;
 background-color: rgba(196, 196, 196, 0.407);
 border : 0px solid rgba(196, 196, 196, 0.407);
 border-radius: 8px;</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton">
-      <property name="geometry">
-       <rect>
-        <x>40</x>
-        <y>30</y>
-        <width>83</width>
-        <height>29</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgba(196, 196, 196, 0.407);
-border-color:rgba(196, 196, 196, 0.4);
-color: rgb(126, 126, 126);
-border-radius: 6px;</string>
-      </property>
-      <property name="text">
-       <string>Accueil</string>
-      </property>
+       </property>
+      </widget>
      </widget>
     </widget>
     <widget class="QWidget" name="page_victoire">
