@@ -135,10 +135,11 @@ void Plateau::checkVictoryDefeat()
                 win = false;
                 break;
             }
+            if ((win=false)) break;
         }
-        if (!win) break;
+        if (win) qDebug() << "You Win !";
     }
-    if (win) qDebug() << "You Win !";
+
 }
 
 Plateau::Plateau()
