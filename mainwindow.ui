@@ -44,44 +44,73 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="page_accueil">
-     <widget class="QLabel" name="label">
+     <property name="styleSheet">
+      <string notr="true">background-image: url(:/images/background.png);</string>
+     </property>
+     <widget class="QFrame" name="frame">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>10</y>
-        <width>131</width>
-        <height>81</height>
+        <x>0</x>
+        <y>0</y>
+        <width>1080</width>
+        <height>720</height>
        </rect>
-      </property>
-      <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:12pt; color:#787878;&quot;&gt;Accueil&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_2">
-      <property name="geometry">
-       <rect>
-        <x>470</x>
-        <y>350</y>
-        <width>171</width>
-        <height>61</height>
-       </rect>
-      </property>
-      <property name="toolTip">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgba(74,57,88, 0.407);
+       <string notr="true"/>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <widget class="QPushButton" name="pushButton_2">
+       <property name="geometry">
+        <rect>
+         <x>440</x>
+         <y>390</y>
+         <width>200</width>
+         <height>60</height>
+        </rect>
+       </property>
+       <property name="toolTip">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(74,57,88, 0.407);
 border-color:rgba(196, 196, 196, 0.4);
-color: rgba(240, 240, 240, 0.850);
+color:white;
 border-radius: 6px;
-font: 13pt &quot;Segoe UI&quot;;</string>
-      </property>
-      <property name="text">
-       <string>Play</string>
-      </property>
+font: 700 18pt &quot;Segoe UI&quot;;</string>
+       </property>
+       <property name="text">
+        <string>Play</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>220</y>
+         <width>1080</width>
+         <height>101</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background:none;
+color:&quot;#463554&quot;;
+font: 150pt &quot;Gabriola&quot;;</string>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:72pt; font-weight:700;&quot;&gt;Aztec&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
+      <zorder>label</zorder>
+      <zorder>pushButton_2</zorder>
      </widget>
     </widget>
     <widget class="QWidget" name="page_jeu">

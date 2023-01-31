@@ -11,11 +11,6 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow), timer (new QTimer)
 {
     ui->setupUi(this);
-    Plateau *p = new Plateau();
-    ui->canvas->setPlateau(p);
-
-    timer->start(1000);
-    connect(timer ,&QTimer::timeout, this, &MainWindow::action_timer);
 
 }
 
@@ -34,6 +29,20 @@ void MainWindow::action_timer()
     ui->Digital_clock->display(te);
 }
 
+void MainWindow::startGame()
+{
+    Plateau *p = new Plateau();
+    ui->canvas->setPlateau(p);
+
+    timer->start(1000);
+    connect(timer ,&QTimer::timeout, this, &MainWindow::action_timer);
+}
+
+void MainWindow::changePage(int index)
+{
+    ui->stackedWidget->setCurrentIndex(index);
+}
+
 void MainWindow::on_pushButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
@@ -43,6 +52,8 @@ void MainWindow::on_pushButton_clicked()
 void MainWindow::on_pushButton_2_clicked()
 {
     ui->stackedWidget->setCurrentIndex(1);
+    startGame();
+
 }
 
 void MainWindow::on_pushButton_n1_clicked()
