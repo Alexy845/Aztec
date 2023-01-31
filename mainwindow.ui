@@ -98,7 +98,7 @@ font: 13pt &quot;Segoe UI&quot;;</string>
        <property name="geometry">
         <rect>
          <x>30</x>
-         <y>40</y>
+         <y>20</y>
          <width>83</width>
          <height>29</height>
         </rect>
@@ -116,10 +116,10 @@ border-radius: 6px;</string>
       <widget class="QLCDNumber" name="Digital_clock">
        <property name="geometry">
         <rect>
-         <x>910</x>
-         <y>30</y>
-         <width>111</width>
-         <height>51</height>
+         <x>1010</x>
+         <y>20</y>
+         <width>50</width>
+         <height>20</height>
         </rect>
        </property>
        <property name="styleSheet">
