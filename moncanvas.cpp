@@ -31,8 +31,8 @@ void MonCanvas::paintEvent(QPaintEvent *)
         QColor blue20 = Qt::blue;
         blue20.setAlphaF( 0.2 );
         painter.setBrush(blue20);
-        int y = m_plateau->getSelectCase()[0]*55+1;
-        int x = m_plateau->getSelectCase()[1]*55+1;
+        int y = m_plateau->getSelectCase()[0]*55+74;
+        int x = m_plateau->getSelectCase()[1]*55+292;
         painter.drawRect(QRect(x,y,55,55));
 
         QFont *police = new QFont("Arial", 20, QFont::Bold);
@@ -61,8 +61,9 @@ void MonCanvas::paintEvent(QPaintEvent *)
 
 void MonCanvas::mousePressEvent(QMouseEvent *event)
 {
-    int c = (event->position().x()-10)/55;
-    int l = (event->position().y()-10)/55;
+    int c = (event->position().x()-292)/55;
+    int l = (event->position().y()-74)/55;
+    qDebug() << event->position().x() << event->position().y();
     m_plateau->setSelectCase({l,c});
     repaint();
 }
