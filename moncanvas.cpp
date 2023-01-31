@@ -62,11 +62,13 @@ void MonCanvas::paintEvent(QPaintEvent *)
 
 void MonCanvas::mousePressEvent(QMouseEvent *event)
 {
-    int c = (event->position().x()-292)/55;
-    int l = (event->position().y()-74)/55;
-    //qDebug() << event->position().x() << event->position().y();
-    m_plateau->setSelectCase({l,c});
-    repaint();
+    if(event->position().x() > 292 && event->position().x() < 787 && event->position().y() > 74 && event->position().y() < 569){
+        int c = (event->position().x()-292)/55;
+        int l = (event->position().y()-74)/55;
+        qDebug() << event->position().x() << event->position().y();
+        m_plateau->setSelectCase({l,c});
+        repaint();
+    }
 }
 
 void MonCanvas::keyPressEvent(QKeyEvent *event)

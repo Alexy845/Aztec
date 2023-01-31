@@ -1,6 +1,10 @@
 #include "mainwindow.h"
+#include "qevent.h"
 #include "ui_mainwindow.h"
 #include "plateau.h"
+
+
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -39,6 +43,60 @@ void MainWindow::on_pushButton_clicked()
 void MainWindow::on_pushButton_2_clicked()
 {
     ui->stackedWidget->setCurrentIndex(1);
+}
+
+void MainWindow::on_pushButton_n1_clicked()
+{
+    ui->canvas->keyPressEvent(new QKeyEvent(QKeyEvent::KeyPress, Qt::Key_1, Qt::NoModifier));
+
+}
+
+void MainWindow::on_pushButton_n2_clicked()
+{
+    ui->canvas->keyPressEvent(new QKeyEvent(QKeyEvent::KeyPress, Qt::Key_2, Qt::NoModifier));
+
+}
+
+void MainWindow::on_pushButton_n3_clicked()
+{
+    ui->canvas->keyPressEvent(new QKeyEvent(QKeyEvent::KeyPress, Qt::Key_3, Qt::NoModifier));
+
+}
+
+void MainWindow::on_pushButton_n4_clicked()
+{
+    ui->canvas->keyPressEvent(new QKeyEvent(QKeyEvent::KeyPress, Qt::Key_4, Qt::NoModifier));
+
+}
+
+void MainWindow::on_pushButton_n5_clicked()
+{
+    ui->canvas->keyPressEvent(new QKeyEvent(QKeyEvent::KeyPress, Qt::Key_5, Qt::NoModifier));
+
+}
+
+void MainWindow::on_pushButton_n6_clicked()
+{
+    ui->canvas->keyPressEvent(new QKeyEvent(QKeyEvent::KeyPress, Qt::Key_6, Qt::NoModifier));
+
+}
+
+void MainWindow::on_pushButton_n7_clicked()
+{
+    ui->canvas->keyPressEvent(new QKeyEvent(QKeyEvent::KeyPress, Qt::Key_7, Qt::NoModifier));
+
+}
+
+void MainWindow::on_pushButton_n8_clicked()
+{
+    ui->canvas->keyPressEvent(new QKeyEvent(QKeyEvent::KeyPress, Qt::Key_8, Qt::NoModifier));
+
+}
+
+void MainWindow::on_pushButton_n9_clicked()
+{
+    ui->canvas->keyPressEvent(new QKeyEvent(QKeyEvent::KeyPress, Qt::Key_9, Qt::NoModifier));
+
 }
 
 void MainWindow::on_page_victoire_customContextMenuRequested(const QPoint &pos)

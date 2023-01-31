@@ -25,6 +25,16 @@ private slots:
 
     void on_pushButton_2_clicked();
 
+    void on_pushButton_n1_clicked();
+    void on_pushButton_n2_clicked();
+    void on_pushButton_n3_clicked();
+    void on_pushButton_n4_clicked();
+    void on_pushButton_n5_clicked();
+    void on_pushButton_n6_clicked();
+    void on_pushButton_n7_clicked();
+    void on_pushButton_n8_clicked();
+    void on_pushButton_n9_clicked();
+
     void on_page_victoire_customContextMenuRequested(const QPoint &pos);
 
 private:
