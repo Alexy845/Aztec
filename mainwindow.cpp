@@ -41,3 +41,6 @@ void MainWindow::on_pushButton_2_clicked()
     ui->stackedWidget->setCurrentIndex(1);
 }
 
+
+
+

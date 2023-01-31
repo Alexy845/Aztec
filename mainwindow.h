@@ -25,6 +25,8 @@ private slots:
 
     void on_pushButton_2_clicked();
 
+    void on_page_victoire_customContextMenuRequested(const QPoint &pos);
+
 private:
     Ui::MainWindow *ui;
     QTimer *timer;
