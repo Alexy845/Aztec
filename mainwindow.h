@@ -21,6 +21,7 @@ public:
     void stopTimer();
     void startGame();
     void changePage(int index);
+    void endGame(int index);
 
 private slots:
     void on_pushButton_clicked();
@@ -41,5 +42,6 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QTimer *timer;
+    int timerCount;
 };
 #endif // MAINWINDOW_H

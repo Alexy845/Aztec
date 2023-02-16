@@ -10,6 +10,11 @@ void MonCanvas::setPlateau(Plateau *newPlateau)
     setFocusPolicy( Qt::StrongFocus );
 }
 
+void MonCanvas::setMainwindow(MainWindow *newMainwindow)
+{
+    mainwindow = newMainwindow;
+}
+
 QPointF MonCanvas::changeCoo(QPointF p)
 {
     return QPointF(p.x()*deltaX+margex, p.y()*deltaY+margeY);
@@ -106,5 +111,10 @@ void MonCanvas::keyPressEvent(QKeyEvent *event)
     else{
         m_plateau->setValue(m_plateau->getSelectCase()[0], m_plateau->getSelectCase()[1], 0);
         repaint();
+    }
+
+    int status = m_plateau->checkVictoryDefeat();
+    if(status != 0){
+        mainwindow->endGame(status);
     }
 }

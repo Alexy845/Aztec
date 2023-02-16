@@ -3,7 +3,7 @@
 #include <QDebug>
 #include <QGlobal.h>
 #include <QTime>
-#include "threadgeneratorresolve.h".h"
+#include "threadgeneratorresolve.h"
 
 ThreadTableau::ThreadTableau(QObject *parent) : QThread(parent) {}
 
@@ -294,5 +294,5 @@ void ThreadTableau::run()
     while(true){
     }
 */
-    qDebug() << "finis";
+    //qDebug() << "finis";
 }

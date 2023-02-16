@@ -21,19 +21,25 @@ MainWindow::~MainWindow()
 
 void MainWindow::action_timer()
 {
-    static int compteur=0;
-    compteur++;
-    int min = compteur/60;
-    int sec = compteur%60;
+    timerCount++;
+    int min = timerCount/60;
+    int sec = timerCount%60;
     QString te = (min >= 10 ? "":"0") + QString::number(min) + ":" + (sec >= 10 ? "":"0") + QString::number(sec);
     ui->Digital_clock->display(te);
+}
+
+void MainWindow::stopTimer()
+{
+    qDebug() << "Timer stop";
+    timer->stop();
 }
 
 void MainWindow::startGame()
 {
     Plateau *p = new Plateau();
     ui->canvas->setPlateau(p);
-
+    ui->canvas->setMainwindow(this);
+    timerCount = 0;
     timer->start(1000);
     connect(timer ,&QTimer::timeout, this, &MainWindow::action_timer);
 }
@@ -43,9 +49,16 @@ void MainWindow::changePage(int index)
     ui->stackedWidget->setCurrentIndex(index);
 }
 
+void MainWindow::endGame(int ve)
+{
+    changePage(ve);
+    stopTimer();
+}
+
 void MainWindow::on_pushButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
+    stopTimer();
 }
 
 

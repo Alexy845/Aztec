@@ -23,7 +23,7 @@ public:
     bool canPlaceValue(int l, int c, int value);
     int getRemaining_live() const;
     void uncreaseRemaining_live();
-    void checkVictoryDefeat();
+    int checkVictoryDefeat();
 };
 
 #endif // PLATEAU_H

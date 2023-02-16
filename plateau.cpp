@@ -34,7 +34,6 @@ void Plateau::setSelectCase(const QList<int> &newSelectCase)
 void Plateau::setValue(int l, int c, int value)
 {
     m_completionplateau[l][c].setValeur(canPlaceValue(l,c,value) ? value:value*10);
-    checkVictoryDefeat();
 }
 
 bool Plateau::canPlaceValue(int l, int c, int value)
@@ -84,13 +83,13 @@ void Plateau::uncreaseRemaining_live()
     m_remaining_live--;
 }
 
-void Plateau::checkVictoryDefeat()
+int Plateau::checkVictoryDefeat()
 {
     if(getRemaining_live() > 0){
         qDebug() << getRemaining_live();
     }
     else{
-        qDebug() << "You Lose !";
+        return 3;
     }
 
 
@@ -103,24 +102,11 @@ void Plateau::checkVictoryDefeat()
                 }
             }
             if(l==8 && c==8 && getRemaining_live() != 0){
-                qDebug() << "You Win !";
+                return 2;
             }
         }
     }
-   /* bool win = true;
-    for(int l=0; l<9; l++) {
-        for(int c=0; c<9; c++) {
-            int t = m_plateau[l][c].getValeur();
-            int ct = m_completionplateau[l][c].getValeur();
-            if(ct >= 10 || t == 0) {
-                win = false;
-                break;
-            }
-            if ((win=false)) break;
-        }
-        if (win) qDebug() << "You Win !";
-    }
-    if (win) qDebug() << "You Win !";*/
+    return 0;
 }
 
 Plateau::Plateau()
