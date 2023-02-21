@@ -109,8 +109,39 @@ font: 150pt &quot;Gabriola&quot;;</string>
         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:72pt; font-weight:700;&quot;&gt;Aztec&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
       </widget>
+      <widget class="QPushButton" name="connection_btn">
+       <property name="geometry">
+        <rect>
+         <x>500</x>
+         <y>460</y>
+         <width>80</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Connection</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="l_user">
+       <property name="geometry">
+        <rect>
+         <x>1010</x>
+         <y>20</y>
+         <width>49</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color:black;</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
       <zorder>label</zorder>
       <zorder>pushButton_2</zorder>
+      <zorder>connection_btn</zorder>
+      <zorder>l_user</zorder>
      </widget>
     </widget>
     <widget class="QWidget" name="page_jeu">
@@ -463,6 +494,126 @@ font-size:20px;</string>
       </property>
       <property name="text">
        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:20pt; color:#0b7a3d;&quot;&gt;You Win !&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="page_lr">
+     <widget class="QWidget" name="verticalLayoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>420</x>
+        <y>290</y>
+        <width>222</width>
+        <height>165</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QTextEdit" name="EDT_Username">
+         <property name="maximumSize">
+          <size>
+           <width>200</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="inputMethodHints">
+          <set>Qt::ImhHiddenText</set>
+         </property>
+         <property name="tabChangesFocus">
+          <bool>true</bool>
+         </property>
+         <property name="placeholderText">
+          <string>Username</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTextEdit" name="EDT_Pass">
+         <property name="maximumSize">
+          <size>
+           <width>200</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="inputMethodHints">
+          <set>Qt::ImhHiddenText</set>
+         </property>
+         <property name="tabChangesFocus">
+          <bool>true</bool>
+         </property>
+         <property name="placeholderText">
+          <string>Password</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTextEdit" name="EDT_ConfPass">
+         <property name="maximumSize">
+          <size>
+           <width>200</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="inputMethodHints">
+          <set>Qt::ImhHiddenText</set>
+         </property>
+         <property name="tabChangesFocus">
+          <bool>true</bool>
+         </property>
+         <property name="placeholderText">
+          <string>Confirm Password</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="cr_btn">
+         <property name="text">
+          <string>Register</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <widget class="QLabel" name="l_quest">
+           <property name="text">
+            <string>Already have an account ?</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="l_action">
+           <property name="styleSheet">
+            <string notr="true">background:white;
+color:black;
+border:none;</string>
+           </property>
+           <property name="text">
+            <string>Use it</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QLabel" name="l_title">
+      <property name="geometry">
+       <rect>
+        <x>-2</x>
+        <y>130</y>
+        <width>1081</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color:black;</string>
+      </property>
+      <property name="text">
+       <string>Register</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
     </widget>
