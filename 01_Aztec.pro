@@ -15,20 +15,14 @@ SOURCES += \
     mainwindow.cpp \
     moncanvas.cpp \
     piece.cpp \
-    plateau.cpp \
-    threadgeneratorresolve.cpp \
-    threadgenresolve.cpp \
-    threadtableau.cpp
+    plateau.cpp
 
 HEADERS += \
     ../shared/qstd.h \
     mainwindow.h \
     moncanvas.h \
     piece.h \
-    plateau.h \
-    threadgeneratorresolve.h \
-    threadgenresolve.h \
-    threadtableau.h
+    plateau.h
 
 FORMS += \
     mainwindow.ui

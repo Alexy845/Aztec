@@ -49,15 +49,19 @@ void MainWindow::stopTimer()
 {
     qDebug() << "Timer stop";
     timer->stop();
+    delete timer;
+    timerCount = 0;
 }
 
 void MainWindow::startGame()
 {
+    timer = new QTimer();
     Plateau *p = new Plateau();
     ui->canvas->setPlateau(p);
     ui->canvas->setMainwindow(this);
     timerCount = 0;
     timer->start(1000);
+    ui->Digital_clock->display("00:00");
     connect(timer ,&QTimer::timeout, this, &MainWindow::action_timer);
 }
 
@@ -69,6 +73,16 @@ void MainWindow::changePage(int index)
 void MainWindow::endGame(int ve)
 {
     changePage(ve);
+    if(myDB.isOpen() && ve == 2){
+        QSqlQuery qry;
+        QString request;
+        if(qry.exec("SELECT * FROM Users WHERE id='" + QString::number(getCurrentID()) + "'")){
+            if(qry.next()){
+                qry.exec("INSERT INTO Record(UID, Time) values ('" + QString::number(getCurrentID()) + "', '"+ QString::number(timerCount) +"')");
+                qDebug() << "Time add created";
+            }
+        }
+    }
     stopTimer();
 }
 

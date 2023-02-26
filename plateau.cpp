@@ -85,10 +85,7 @@ void Plateau::uncreaseRemaining_live()
 
 int Plateau::checkVictoryDefeat()
 {
-    if(getRemaining_live() > 0){
-        qDebug() << getRemaining_live();
-    }
-    else{
+    if(getRemaining_live() <= 0){
         return 3;
     }
 
