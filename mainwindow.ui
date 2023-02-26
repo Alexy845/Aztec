@@ -44,7 +44,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="page_accueil">
      <property name="styleSheet">
@@ -479,6 +479,22 @@ font-size:20px;</string>
          </widget>
         </item>
        </layout>
+      </widget>
+      <widget class="QLabel" name="BestRecord">
+       <property name="geometry">
+        <rect>
+         <x>930</x>
+         <y>60</y>
+         <width>121</width>
+         <height>581</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Your best record :</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+       </property>
       </widget>
      </widget>
     </widget>

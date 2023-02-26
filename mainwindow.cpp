@@ -55,13 +55,36 @@ void MainWindow::stopTimer()
 
 void MainWindow::startGame()
 {
+    qDebug() << getCurrentID();
     timer = new QTimer();
     Plateau *p = new Plateau();
+    QString txtrecord ="";
     ui->canvas->setPlateau(p);
     ui->canvas->setMainwindow(this);
     timerCount = 0;
     timer->start(1000);
     ui->Digital_clock->display("00:00");
+    if(myDB.isOpen()){
+        QSqlQuery qry;
+        if(qry.exec("SELECT * FROM Users WHERE id='" + QString::number(getCurrentID()) + "'")){
+            QSqlQuery qryRecord("SELECT * FROM Record WHERE UID='" + QString::number(getCurrentID()) + "' ORDER BY Time DESC LIMIT 10");
+            if(qryRecord.record().count() == 0){
+                txtrecord = "";
+            }else{
+                txtrecord = "Best record :";
+            }
+            int idRecord = qryRecord.record().indexOf("Time");
+            while (qryRecord.next()){
+                int timerRegister = qryRecord.value(idRecord).toInt();
+                int mint = timerRegister/60;
+                int sect = timerRegister%60;
+                QString tet = (mint >= 10 ? "":"0") + QString::number(mint) + ":" + (sect >= 10 ? "":"0") + QString::number(sect);
+                txtrecord += "\n" + tet;
+                qDebug() << timerRegister;
+            }
+        }
+    }
+    ui->BestRecord->setText(txtrecord);
     connect(timer ,&QTimer::timeout, this, &MainWindow::action_timer);
 }
 
@@ -75,7 +98,6 @@ void MainWindow::endGame(int ve)
     changePage(ve);
     if(myDB.isOpen() && ve == 2){
         QSqlQuery qry;
-        QString request;
         if(qry.exec("SELECT * FROM Users WHERE id='" + QString::number(getCurrentID()) + "'")){
             if(qry.next()){
                 qry.exec("INSERT INTO Record(UID, Time) values ('" + QString::number(getCurrentID()) + "', '"+ QString::number(timerCount) +"')");
@@ -108,7 +130,11 @@ void MainWindow::registerAccount(QString username, QString Password, QString Con
         }else {
             qry.exec("INSERT INTO Users(Username, Password) values ('" + username + "', '" + Password + "')");
             qDebug() << "User created";
-            setCurrentID(qry.exec("SELECT id FROM Users WHERE Username='" + username + "'"));
+            QSqlQuery qryUser("SELECT * FROM Users WHERE Username='" + username + "'");
+            int idUser = qryUser.record().indexOf("id");
+            if(qryUser.next()){
+                setCurrentID(qryUser.value(idUser).toInt());
+            }
             ui->l_user->setText(username);
             changePage(0);
             return;
@@ -129,7 +155,11 @@ void MainWindow::loginAccount(QString username, QString Password)
     if(qry.exec("SELECT * FROM Users WHERE Username='" + username + "' AND Password='" + Password + "'")){
         if(qry.next()){
             qDebug() << "Hello " << username << " you'r now connected";
-            setCurrentID(qry.exec("SELECT id FROM Users WHERE Username='" + username + "'"));
+            QSqlQuery qryUser("SELECT * FROM Users WHERE Username='" + username + "'");
+            int idUser = qryUser.record().indexOf("id");
+            if(qryUser.next()){
+                setCurrentID(qryUser.value(idUser).toInt());
+            }
             ui->l_user->setText(username);
             changePage(0);
             return;
@@ -240,10 +270,6 @@ void MainWindow::on_l_action_clicked()
     }
 }
 
-void MainWindow::on_page_victoire_customContextMenuRequested(const QPoint &pos)
-{
-
-}
 
 int MainWindow::getCurrentID() const
 {

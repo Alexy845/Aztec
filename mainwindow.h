@@ -48,8 +48,6 @@ private slots:
     void on_connection_btn_clicked();
     void on_l_action_clicked();
 
-    void on_page_victoire_customContextMenuRequested(const QPoint &pos);
-
 private:
     Ui::MainWindow *ui;
     QSqlDatabase myDB;
